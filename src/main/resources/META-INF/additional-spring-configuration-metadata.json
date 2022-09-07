@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "database.driver.ClassName",
+      "type": "java.lang.String",
+      "description": "Description for database.driver.ClassName."
+  }
+] }
