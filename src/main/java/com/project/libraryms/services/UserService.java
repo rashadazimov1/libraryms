@@ -37,6 +37,8 @@ public class UserService {
 		User user = new User();
 		user.setFullName(userRequest.getFullName());
 		user.setEmail(userRequest.getEmail());
+		user.setBirthDate(userRequest.getBirthDate());
+		user.setAddress(userRequest.getAddress());
 		user.setUsername(userRequest.getUsername());
 		user.setPassword(encoder.encode(userRequest.getPassword()));
 		 userRepository.save(user);
@@ -70,9 +72,7 @@ public class UserService {
 //
 //
 //
-//	public List<User> getAllUsers() {
-//		return userRepository.findAll();
-//	}
+
 //
 	public User saveOneUser(User newUser) {
 		return userRepository.save(newUser);
@@ -81,7 +81,7 @@ public class UserService {
 	public User getOneUserById(Long userId) {
 		return userRepository.findById(userId).orElse(null);
 	}
-	@CacheEvict(value = "user", allEntries = true)
+
 	public User updateOneUser(Long userId, User newUser) {
 		Optional<User> user = userRepository.findById(userId);
 		if(user.isPresent()) {
