@@ -9,6 +9,7 @@ import com.project.libraryms.service.impl.BookServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-
+    @SessionScope
     @GetMapping("/id/{id}")
     public Optional<Book> getOneItemById(@PathVariable Long id) throws NotFoundException {
         Optional<Book> item = bookService.getBookById(id);
@@ -34,7 +35,7 @@ public class BookController {
         }
     }
 
-
+    @SessionScope
     @GetMapping("/all")
     public Iterable<Book> getAllBooks(){
         return bookService.getAllBooks();

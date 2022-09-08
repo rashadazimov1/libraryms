@@ -11,10 +11,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.Optional;
 
 @Service
+@RequestScope
 public class BookServiceImpl {
 
 
