@@ -46,6 +46,11 @@ public class RefreshToken {
 		return user;
 	}
 
+	public RefreshToken(String token, Date expiryDate) {
+		this.token = token;
+		this.expiryDate = expiryDate;
+	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}

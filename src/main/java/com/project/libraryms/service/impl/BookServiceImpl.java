@@ -3,8 +3,9 @@ package com.project.libraryms.service.impl;
 
 
 import com.project.libraryms.entities.Book;
+import com.project.libraryms.exception.NotFoundException;
 import com.project.libraryms.repos.BookRepository;
-import javassist.NotFoundException;
+
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

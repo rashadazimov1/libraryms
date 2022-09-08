@@ -60,7 +60,7 @@ public class AuthorController {
 
 
     @PutMapping("/id/{id}")
-    public Author updateAuthor(@RequestBody Author author, @PathVariable Long id) throws javassist.NotFoundException {
+    public Author updateAuthor(@RequestBody Author author, @PathVariable Long id) throws NotFoundException {
         return authorService.updateAuthor(author, id);
     }
 

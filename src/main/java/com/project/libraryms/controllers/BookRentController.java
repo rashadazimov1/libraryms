@@ -2,10 +2,10 @@ package com.project.libraryms.controllers;
 
 import com.project.libraryms.entities.BookRent;
 import com.project.libraryms.exception.NotAcceptedException;
+import com.project.libraryms.exception.NotFoundException;
 import com.project.libraryms.service.impl.BookRentService;
 
 
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

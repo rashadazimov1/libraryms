@@ -39,8 +39,6 @@ com\project\libraryms\requests\StockDTO.class
 com\project\libraryms\exception\UnauthorizedException.class
 com\project\libraryms\repos\BookRentRepository.class
 com\project\libraryms\dto\categoryDto\CategoryDto.class
-com\project\libraryms\service\BookService.class
-com\project\libraryms\service\CategoryService.class
 com\project\libraryms\service\impl\AuthorServiceImpl.class
 com\project\libraryms\service\impl\CountRentBooksViewService.class
 com\project\libraryms\dto\bookdto\CreateRequestBookDto.class
@@ -54,7 +52,6 @@ com\project\libraryms\dto\categoryDto\CreateRequestCategoryDto.class
 com\project\libraryms\responses\UserResponse.class
 com\project\libraryms\security\JwtUserDetails.class
 com\project\libraryms\dto\dto\StockDTO.class
-com\project\libraryms\service\AuthorService.class
 com\project\libraryms\requests\RefreshRequest.class
 com\project\libraryms\dto\RefreshRequest.class
 com\project\libraryms\dto\userDto\UserDtoConverter.class

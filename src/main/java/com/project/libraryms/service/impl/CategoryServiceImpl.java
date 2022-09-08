@@ -4,7 +4,7 @@ package com.project.libraryms.service.impl;
 import com.project.libraryms.entities.Categories;
 import com.project.libraryms.entities.Category;
 import com.project.libraryms.repos.CategoryRepository;
-import javassist.NotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

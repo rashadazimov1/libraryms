@@ -2,16 +2,19 @@ package com.project.libraryms.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.redis.core.RedisHash;
 
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 
 @Entity
+
 @Table(name = "books_table")
 public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -123,5 +126,18 @@ public class Book implements Serializable {
 
 	public void setCategorySet(Set<Category> categorySet) {
 		this.categorySet = categorySet;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Book)) return false;
+		Book book = (Book) o;
+		return Objects.equals(getId(), book.getId()) && Objects.equals(getBarCode(), book.getBarCode()) && Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getDescription(), book.getDescription()) && Objects.equals(getAuthors(), book.getAuthors()) && Objects.equals(getBookRentSet(), book.getBookRentSet()) && Objects.equals(getStockSet(), book.getStockSet()) && Objects.equals(getCategorySet(), book.getCategorySet());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId(), getBarCode(), getTitle(), getDescription(), getAuthors(), getBookRentSet(), getStockSet(), getCategorySet());
 	}
 }

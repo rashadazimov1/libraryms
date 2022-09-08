@@ -4,6 +4,7 @@ import com.project.libraryms.dto.dto.ReservedBookDTO;
 import com.project.libraryms.entities.BookRent;
 
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -12,9 +13,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-
 @Repository
-public interface BookRentRepository extends CrudRepository<BookRent, Long> {
+public interface BookRentRepository extends JpaRepository<BookRent, Long> {
 
 //    @Query("SELECT new com.project.libraryms.dto.dto.RentBookDto( il.id, i.title, i.barCode, il.creationDate, il.dueDate) FROM BookRent il INNER JOIN il.item i INNER JOIN il.user u INNER JOIN u.fullName l WHERE l.email=:email AND il.isConfirmed = TRUE AND il.isReturned = FALSE")
 //    List<RentBookDto> findByBorrowedBookByUserEmail(String email);

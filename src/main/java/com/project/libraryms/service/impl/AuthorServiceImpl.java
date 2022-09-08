@@ -1,8 +1,8 @@
 package com.project.libraryms.service.impl;
 
 import com.project.libraryms.entities.Author;
+import com.project.libraryms.exception.NotFoundException;
 import com.project.libraryms.repos.AuthorRepository;
-import javassist.NotFoundException;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

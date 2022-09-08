@@ -2,9 +2,12 @@ package com.project.libraryms.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.redis.core.RedisHash;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -65,5 +68,19 @@ public class Author {
 
 	public void setBooks(Set<Book> books) {
 		this.books = books;
+
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Author)) return false;
+		Author author = (Author) o;
+		return Objects.equals(getId(), author.getId()) && Objects.equals(getFullName(), author.getFullName()) && Objects.equals(getBirthDate(), author.getBirthDate()) && Objects.equals(getBooks(), author.getBooks());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId(), getFullName(), getBirthDate(), getBooks());
 	}
 }

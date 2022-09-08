@@ -11,6 +11,7 @@ import com.project.libraryms.repos.RefreshTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -18,12 +19,16 @@ public class RefreshTokenService {
 
 	@Value("${refresh.token.expires.in}")
 	Long expireSeconds;
-	@Autowired
-	private RefreshTokenRepository refreshTokenRepository;
+
+	private final RefreshTokenRepository refreshTokenRepository;
 
 	public RefreshTokenService(RefreshTokenRepository refreshTokenRepository) {
 		this.refreshTokenRepository = refreshTokenRepository;
 	}
+
+
+
+
 
 	public String createRefreshToken(User user) {
 		RefreshToken token = refreshTokenRepository.findByUserId(user.getId());

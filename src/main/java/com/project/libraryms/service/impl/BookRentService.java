@@ -3,8 +3,8 @@ package com.project.libraryms.service.impl;
 import com.project.libraryms.dto.dto.RentBookDto;
 import com.project.libraryms.dto.dto.ReservedBookDTO;
 import com.project.libraryms.entities.BookRent;
+import com.project.libraryms.exception.NotFoundException;
 import com.project.libraryms.repos.BookRentRepository;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -18,13 +18,13 @@ import java.util.Optional;
 @Service
 public class BookRentService {
 
-    @Autowired
-    BookRentService bookRentService;
 
-    @Autowired
-   private BookRentRepository bookRentRepository;
+     @Autowired
+     private  BookRentRepository bookRentRepository;
 
-//    public List<RentBookDto> findBorrowedBookAndCreationDueDateByUserEmail(String email){
+
+
+    //    public List<RentBookDto> findBorrowedBookAndCreationDueDateByUserEmail(String email){
 //        return bookRentRepository.findByBorrowedBookByUserEmail(email);
 //    }
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)

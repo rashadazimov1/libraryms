@@ -2,10 +2,10 @@ package com.project.libraryms.controllers;
 
 import com.project.libraryms.entities.Book;
 import com.project.libraryms.exception.DeleteDetails;
+import com.project.libraryms.exception.NotFoundException;
 import com.project.libraryms.exception.UnprocessableEntityException;
 import com.project.libraryms.service.impl.BookServiceImpl;
 
-import javassist.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

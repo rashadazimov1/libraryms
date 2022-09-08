@@ -7,6 +7,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.redis.core.RedisHash;
 import org.springframework.lang.Nullable;
 
 import java.io.Serializable;
@@ -135,4 +136,16 @@ public class User implements Serializable {
 		this.bookRentSet = bookRentSet;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof User)) return false;
+		User user = (User) o;
+		return Objects.equals(getId(), user.getId()) && Objects.equals(getFullName(), user.getFullName()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getBirthDate(), user.getBirthDate()) && Objects.equals(getAddress(), user.getAddress()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getBookRentSet(), user.getBookRentSet());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId(), getFullName(), getUsername(), getBirthDate(), getAddress(), getEmail(), getPassword(), getBookRentSet());
+	}
 }
