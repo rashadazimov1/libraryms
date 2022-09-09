@@ -45,7 +45,7 @@ public class BookServiceImpl {
         return bookRepository.findAll();
     }
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Iterable<Book> findBookByTitle(String title){
+    public Optional<Book> findBookByTitle(String title){
         return bookRepository.findBookByTitle(title);
     }
 //    public Iterable<Book> findItemByAuthorName(String fullName){

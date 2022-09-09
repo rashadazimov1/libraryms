@@ -24,18 +24,27 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @SessionScope
     @GetMapping("/id/{id}")
-    public Optional<Book> getOneItemById(@PathVariable Long id) throws NotFoundException {
+    public Optional<Book> getOneBookById(@PathVariable Long id) throws NotFoundException {
         Optional<Book> item = bookService.getBookById(id);
         if (item.isPresent()){
             return item;
         }else {
-            throw new NotFoundException("Item not found with id :" + id);
+            throw new NotFoundException("Book not found with id :" + id);
+        }
+    }
+    @GetMapping("/title/{title}")
+    public Optional<Book> getOneBookByName(@PathVariable String title) throws NotFoundException {
+        Optional<Book> item = bookService.findBookByTitle(title);
+        if (item.isPresent()){
+            return item;
+        }else {
+            throw new NotFoundException("Book not found with id :" + title);
         }
     }
 
-    @SessionScope
+
+
     @GetMapping("/all")
     public Iterable<Book> getAllBooks(){
         return bookService.getAllBooks();
