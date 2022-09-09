@@ -1,13 +1,11 @@
 package com.project.libraryms.repos;
 
 import com.project.libraryms.entities.Book;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 
 
 public interface BookRepository extends CrudRepository<Book, Long> {
@@ -18,7 +16,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
 
 	@Query("SELECT i FROM Book i where i.title like %:title%")
-	Iterable<Book> findBookByTitle(@Param("title") String title);
+	Optional<Book> findBookByTitle(@Param("title") String title);
 
 	@Query("SELECT DISTINCT i FROM Book i INNER JOIN FETCH i.authors a WHERE a.fullName LIKE %:fullName%")
 	Iterable<Book> findItemByAuthorName(@Param("fullName") String fullName);
