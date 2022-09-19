@@ -5,7 +5,7 @@ import com.project.libraryms.dto.dto.QuantityDto;
 import com.project.libraryms.dto.dto.StockDTO;
 import com.project.libraryms.entities.Stock;
 import com.project.libraryms.exception.NotFoundException;
-import com.project.libraryms.service.impl.StockService;
+import com.project.libraryms.serviceimpl.StockService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,12 +35,12 @@ public class StockController {
 
 
     @GetMapping("/id/{id}")
-    public Stock getStockByBookId(@PathVariable Long id){
-        Stock stock = stockService.getStockByBookId(id);
-        if (stock != null){
+    public StockDTO getStockByBookId(@PathVariable Long id) {
+        StockDTO stock = stockService.getStockByBookId(id);
+        if (stock != null) {
             return stock;
-        }else {
-            throw new NotFoundException("Item not found with id :" + id);
+        } else {
+            throw new NotFoundException("Book not found with id :" + id);
         }
     }
 }

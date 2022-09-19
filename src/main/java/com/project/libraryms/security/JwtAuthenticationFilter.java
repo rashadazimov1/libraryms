@@ -1,6 +1,6 @@
 package com.project.libraryms.security;
 
-import com.project.libraryms.services.UserDetailsServiceImpl;
+import com.project.libraryms.serviceimpl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

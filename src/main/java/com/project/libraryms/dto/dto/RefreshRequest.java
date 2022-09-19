@@ -1,4 +1,4 @@
-package com.project.libraryms.dto;
+package com.project.libraryms.dto.dto;
 
 public class RefreshRequest {
 

@@ -1,13 +1,13 @@
 package com.project.libraryms.controllers;
 
-import com.project.libraryms.dto.userDto.UserRequest;
+import com.project.libraryms.dto.dto.RefreshRequest;
+import com.project.libraryms.dto.userDto.UserDto;
 import com.project.libraryms.entities.RefreshToken;
 import com.project.libraryms.entities.User;
-import com.project.libraryms.requests.RefreshRequest;
 import com.project.libraryms.responses.AuthResponse;
 import com.project.libraryms.security.JwtTokenProvider;
-import com.project.libraryms.services.RefreshTokenService;
-import com.project.libraryms.services.UserService;
+import com.project.libraryms.serviceimpl.RefreshTokenService;
+import com.project.libraryms.serviceimpl.UserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,54 +25,54 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
-	private final AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-	private final JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
 
-	private final UserService userService;
+    private final UserServiceImpl userService;
 
-	private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-	private final RefreshTokenService refreshTokenService;
+    private final RefreshTokenService refreshTokenService;
 
-	public AuthController(AuthenticationManager authenticationManager, UserService userService,
-						  PasswordEncoder passwordEncoder, JwtTokenProvider jwtTokenProvider, RefreshTokenService refreshTokenService) {
-		this.authenticationManager = authenticationManager;
-		this.userService = userService;
-		this.passwordEncoder = passwordEncoder;
-		this.jwtTokenProvider = jwtTokenProvider;
-		this.refreshTokenService = refreshTokenService;
-	}
+    public AuthController(AuthenticationManager authenticationManager,
+                          PasswordEncoder passwordEncoder, JwtTokenProvider jwtTokenProvider, UserServiceImpl userService, RefreshTokenService refreshTokenService) {
+        this.authenticationManager = authenticationManager;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.userService = userService;
+        this.refreshTokenService = refreshTokenService;
+    }
 
-	@PostMapping("/login")
-	public AuthResponse login(@RequestBody UserRequest loginRequest) {
-		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword());
-		Authentication auth = authenticationManager.authenticate(authToken);
-		SecurityContextHolder.getContext().setAuthentication(auth);
-		String jwtToken = jwtTokenProvider.generateJwtToken(auth);
-		User user = userService.getOneUserByUserName(loginRequest.getUserName());
-		AuthResponse authResponse = new AuthResponse();
-		authResponse.setAccessToken("Bearer " + jwtToken);
-		authResponse.setRefreshToken(refreshTokenService.createRefreshToken(user));
-		authResponse.setUserId(user.getId());
-		return authResponse;
-	}
+    @PostMapping("/login")
+    public AuthResponse login(@RequestBody UserDto loginRequest) {
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
+        Authentication auth = authenticationManager.authenticate(authToken);
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        String jwtToken = jwtTokenProvider.generateJwtToken(auth);
+        User user = userService.getOneUserByUserName(loginRequest.getUsername());
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setAccessToken("Bearer " + jwtToken);
+        authResponse.setRefreshToken(refreshTokenService.createRefreshToken(user));
+        authResponse.setUserId(user.getId());
+        return authResponse;
+    }
 
-	@PostMapping("/register")
-	public ResponseEntity<AuthResponse> register(@RequestBody UserRequest registerRequest) {
-		AuthResponse authResponse = new AuthResponse();
-		if (userService.getOneUserByUserName(registerRequest.getUserName()) != null) {
-			authResponse.setMessage("Username already in use.");
-			return new ResponseEntity<>(authResponse, HttpStatus.BAD_REQUEST);
-		}
+    @PostMapping("/register")
+    public ResponseEntity<AuthResponse> register(@RequestBody UserDto registerRequest) {
+        AuthResponse authResponse = new AuthResponse();
+        if (userService.getOneUserByUserName(registerRequest.getUsername()) != null) {
+            authResponse.setMessage("Username already in use.");
+            return new ResponseEntity<>(authResponse, HttpStatus.BAD_REQUEST);
+        }
 
-		User user = new User();
-		user.setUsername(registerRequest.getUserName());
-		user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-		userService.saveOneUser(user);
+        User user = new User();
+        user.setUsername(registerRequest.getUsername());
+        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        userService.saveOneUser(user);
 
-		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(registerRequest.getUserName(), registerRequest.getPassword());
-		Authentication auth = authenticationManager.authenticate(authToken);
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(registerRequest.getUsername(), registerRequest.getPassword());
+        Authentication auth = authenticationManager.authenticate(authToken);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		String jwtToken = jwtTokenProvider.generateJwtToken(auth);
 

@@ -23,7 +23,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
 	Book findBookByBarCode(String barCode);
 
-	Book findBookById(Long id);
+	Optional<Book> findBookById(Long id);
 
 
 }

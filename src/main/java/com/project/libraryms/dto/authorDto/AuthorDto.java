@@ -1,31 +1,25 @@
 package com.project.libraryms.dto.authorDto;
 
 
-import com.project.libraryms.entities.Book;
+import com.project.libraryms.dto.bookdto.BookDto;
 
 import java.util.HashSet;
 import java.util.Set;
 
 
 public class AuthorDto {
-    private Long id;
     private String fullName;
     private String birthDate;
-    public Set<Book> books = new HashSet<>();
-
+    private Set<BookDto> books = new HashSet<>();
 
 
     public AuthorDto() {
     }
 
-    public Long getId() {
-        return id;
+    public AuthorDto(String fullName, String birthDate) {
+        this.fullName = fullName;
+        this.birthDate = birthDate;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
     public String getFullName() {
         return fullName;
@@ -43,11 +37,11 @@ public class AuthorDto {
         this.birthDate = birthDate;
     }
 
-    public Set<Book> getBooks() {
+    public Set<BookDto> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {
+    public void setBooks(Set<BookDto> books) {
         this.books = books;
     }
 }

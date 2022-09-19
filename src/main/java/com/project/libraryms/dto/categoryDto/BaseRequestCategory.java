@@ -1,14 +1,14 @@
 package com.project.libraryms.dto.categoryDto;
 
 
-import com.project.libraryms.entities.Book;
+import com.project.libraryms.dto.bookdto.BookDto;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class BaseRequestCategory {
     private String name;
-    private Set<Book> books = new HashSet<Book>();
+    private Set<BookDto> books = new HashSet<BookDto>();
 
     public BaseRequestCategory() {
 
@@ -22,11 +22,11 @@ public class BaseRequestCategory {
         this.name = name;
     }
 
-    public Set<Book> getBooks() {
+    public Set<BookDto> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {
+    public void setBooks(Set<BookDto> books) {
         this.books = books;
     }
 }

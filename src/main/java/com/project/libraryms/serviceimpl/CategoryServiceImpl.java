@@ -1,41 +1,45 @@
-package com.project.libraryms.service.impl;
+package com.project.libraryms.serviceimpl;
 
 
 import com.project.libraryms.entities.Categories;
 import com.project.libraryms.entities.Category;
 import com.project.libraryms.repos.CategoryRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CategoryServiceImpl  {
+public class CategoryServiceImpl {
 
 
-	@Autowired
-	 private CategoryRepository categoryRepository;
+	private final CategoryRepository categoryRepository;
+
+	public CategoryServiceImpl(CategoryRepository categoryRepository) {
+		this.categoryRepository = categoryRepository;
+	}
 
 
-	public Category createLibrary(Category category){
+	public Category createCategory(Category category) {
 		return categoryRepository.save(category);
 	}
-	public void deleteCategoryById(Long id){
+
+	public void deleteCategoryById(Long id) {
 		Optional<Category> foundCategory = categoryRepository.findById(id);
 		foundCategory.ifPresent(category -> categoryRepository.deleteById(category.getId()));
 	}
-	public Optional<Category> getCategoryById(Long id){
+
+	public Optional<Category> getCategoryById(Long id) {
 		return categoryRepository.findById(id);
 	}
-	public List<Category> getAllCategories(){
+
+
+	public List<Category> getAllCategories() {
 		return (List<Category>) categoryRepository.findAll();
 	}
 
-	public List<Category> getItemByCategory(Categories categories){
+
+	public List<Category> getBookByCategory(Categories categories) {
 		return categoryRepository.findAllByCategories(categories);
 	}
 

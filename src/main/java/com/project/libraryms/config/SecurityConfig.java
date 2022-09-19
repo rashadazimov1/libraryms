@@ -3,9 +3,7 @@ package com.project.libraryms.config;
 
 import com.project.libraryms.security.JwtAuthenticationEntryPoint;
 import com.project.libraryms.security.JwtAuthenticationFilter;
-import com.project.libraryms.security.JwtTokenProvider;
-import com.project.libraryms.services.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.project.libraryms.serviceimpl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

@@ -1,8 +1,7 @@
 package com.project.libraryms.repos;
 
-import com.project.libraryms.entities.Stock;
 import com.project.libraryms.dto.dto.StockDTO;
-
+import com.project.libraryms.entities.Stock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -23,6 +22,6 @@ public interface StockRepository extends CrudRepository<Stock, Long> {
     List<StockDTO> findBooksStockByAuthorName(String fullName);
 
     @Query("SELECT DISTINCT s FROM Stock s INNER JOIN FETCH s.book i WHERE i.id=:id")
-    Stock findStockByBookId(@Param("id") Long id);
+    StockDTO findStockByBookId(@Param("id") Long id);
 
 }

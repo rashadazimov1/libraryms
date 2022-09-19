@@ -2,7 +2,7 @@ package com.project.libraryms.controllers;
 
 
 import com.project.libraryms.entities.CountRentBooksView;
-import com.project.libraryms.service.impl.CountRentBooksViewService;
+import com.project.libraryms.serviceimpl.CountRentBooksViewService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,10 +1,13 @@
 package com.project.libraryms.dto.dto;
 
+import com.project.libraryms.dto.bookdto.BookDto;
+
 public class StockDTO {
     private Long id;
     private int quantity;
     private String barCode;
     private String title;
+    private BookDto bookDto;
 
 
     public StockDTO() {
@@ -15,6 +18,11 @@ public class StockDTO {
         this.quantity = quantity;
         this.barCode = barCode;
         this.title = title;
+    }
+
+    public StockDTO(int quantity, BookDto bookDto) {
+        this.quantity = quantity;
+        this.bookDto = bookDto;
     }
 
     public Long getId() {
@@ -49,4 +57,11 @@ public class StockDTO {
         this.title = title;
     }
 
+    public BookDto getBookDto() {
+        return bookDto;
+    }
+
+    public void setBookDto(BookDto bookDto) {
+        this.bookDto = bookDto;
+    }
 }

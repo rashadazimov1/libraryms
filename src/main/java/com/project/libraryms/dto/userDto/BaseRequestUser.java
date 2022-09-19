@@ -1,12 +1,12 @@
 package com.project.libraryms.dto.userDto;
 
 public class BaseRequestUser {
-    private String username;
-    private String firstname;
-    private String lastname;
+    private String fullName;
     private String email;
     private String password;
-
+    private String birthDate;
+    private String username;
+    private String address;
 
 
     public String getUsername() {
@@ -17,20 +17,28 @@ public class BaseRequestUser {
         this.username = username;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getEmail() {

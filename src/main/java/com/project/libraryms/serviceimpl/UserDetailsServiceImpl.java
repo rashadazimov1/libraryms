@@ -1,9 +1,8 @@
-package com.project.libraryms.services;
+package com.project.libraryms.serviceimpl;
 
 import com.project.libraryms.entities.User;
 import com.project.libraryms.repos.UserRepository;
 import com.project.libraryms.security.JwtUserDetails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,15 +15,17 @@ import org.springframework.stereotype.Service;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	private  final UserRepository userRepository;
-	
-    public UserDetailsServiceImpl(UserRepository userRepository) {
+    private final UserRepository userRepository;
+    private final UserServiceImpl userService;
+
+    public UserDetailsServiceImpl(UserRepository userRepository, UserServiceImpl userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(username);
+        User user = userService.getOneUserByUserName(username);
 		return JwtUserDetails.create(user);
 	}
 

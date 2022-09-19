@@ -1,7 +1,5 @@
 package com.project.libraryms.dto.bookdto;
 
-import java.io.Serializable;
-
-public class CreateRequestBookDto implements Serializable {
+public class CreateRequestBookDto extends BaseRequestBook {
 
 }

@@ -1,17 +1,26 @@
 package com.project.libraryms.dto.dto;
 
+import com.project.libraryms.dto.bookdto.BookDto;
+import com.project.libraryms.dto.userDto.UserDto;
+
 public class RentBookDto {
     private Long id;
     private String title;
     private String barCode;
+    private boolean isConfirmed;
+    private boolean isReturned;
     private String creationDate;
     private String dueDate;
+    private BookDto bookDto;
+    private UserDto user;
 
-    public RentBookDto(String title, String barCode, String creationDate, String dueDate) {
+    public RentBookDto(String title, boolean isConfirmed, boolean isReturned, String dueDate, BookDto bookDto, UserDto user) {
         this.title = title;
-        this.barCode = barCode;
-        this.creationDate = creationDate;
+        this.isConfirmed = isConfirmed;
+        this.isReturned = isReturned;
         this.dueDate = dueDate;
+        this.bookDto = bookDto;
+        this.user = user;
     }
 
     public RentBookDto(Long id, String title, String barCode, String creationDate, String dueDate) {
@@ -20,6 +29,49 @@ public class RentBookDto {
         this.barCode = barCode;
         this.creationDate = creationDate;
         this.dueDate = dueDate;
+    }
+
+    public RentBookDto(String title, String barCode, String creationDate, String dueDate) {
+
+        this.title = title;
+        this.barCode = barCode;
+        this.creationDate = creationDate;
+        this.dueDate = dueDate;
+    }
+
+    public RentBookDto() {
+    }
+
+    public BookDto getBookDto() {
+        return bookDto;
+    }
+
+    public void setBookDto(BookDto bookDto) {
+        this.bookDto = bookDto;
+    }
+
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
+    }
+
+    public boolean isConfirmed() {
+        return isConfirmed;
+    }
+
+    public void setConfirmed(boolean confirmed) {
+        isConfirmed = confirmed;
+    }
+
+    public boolean isReturned() {
+        return isReturned;
+    }
+
+    public void setReturned(boolean returned) {
+        isReturned = returned;
     }
 
     public Long getId() {
